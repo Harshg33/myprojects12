@@ -1,0 +1,226 @@
+import time 
+#this is user defined function which makes make each character print after earlier chracter with some time interval
+
+def slow_print(var):
+    for i in var:
+        print(i,end="",flush=True)
+        time.sleep(0.03)
+    print()
+#This is the ending of the game
+def finish():
+    slow_print("""You use the key to unlock the desk drawer, revealing a map of the mansion with a marked exit. 
+          With this newfound knowledge, you head out of the library and make your way through the mansion, avoiding traps and solving puzzles along the way. 
+          Finally, you arrive at the exit and escape from the mysterious mansion.""")
+def toward_finish():
+    slow_print("You left the library with a key. You find every where but key doesn't fit anywhere. \nNow there is only one place left to try the Drawer... ")
+    finish()
+#Outro of the game
+def outro():
+    slow_print(f"Congratulations {name}, you've successfully escaped the mansion and uncovered some of its secrets.")
+#after glass cabinet at double door function you came here
+def glass_cabinet():
+    slow_print("""You decide to examine the locked glass cabinet. Inside, you find a dusty old book titled 
+          "The Mansion's Secrets." 
+          You quickly flip through the pages and discover a hidden compartment with a key. """)
+    slow_print("""1. Use the key to unlock the desk drawer.
+      2. Leave the library with the key.""")
+    ch9=input("What's your next move: ")
+    if ch9.isdigit():
+        ch9=int(ch9)
+        if ch9==1:
+           finish()
+        elif ch9==2:
+           toward_finish()
+    else:
+         slow_print("You enter the invalid choice.\n Please enter the valid choice")
+         slow_print("Let's Retry")
+         glass_cabinet()
+        
+        
+def drawer():
+     slow_print("You went to open a drawer but its locked now you have to find key to unlock it")
+     glass_cabinet()
+#by choosing  to follow laughter user died in the game for that i have used exit function 
+def laughter():
+    slow_print("You follow the laughter through the cooridor, But it was a trap!!. \n You fell into a dig hole and now you have to spend your whole life in here")
+    slow_print("Would you like to restart the game")
+    slow_print("1. Yes ")
+    slow_print("2. NO")
+    ch7=input()
+    if ch7.isdigit():
+        ch7=int(ch7)
+        if ch7==1:
+            main()
+        elif ch7==2:
+            exit()
+    else:
+         slow_print("You enter the invalid choice.\n Please enter the valid choice")
+         slow_print("Let's Retry")
+         laughter()
+def double_door():
+    slow_print("You choose to proceed through the double doors, leading you into a grand, candlelit library. \nYou spot a locked glass cabinet, and next to it, a desk with a drawer")
+    slow_print("1. Examine the Locked Glass cabinet")
+    slow_print("2. Open the drawer of the desk")
+    ch8=input("what will you do?: ")
+    if ch8.isdigit():
+        ch8=int(ch8)
+        if ch8==1:
+            glass_cabinet()
+        elif ch8==2:
+            drawer()
+    else:
+         slow_print("You enter the invalid choice.\n Please enter the valid choice")
+         slow_print("Let's Retry")
+         double_door()
+
+
+def chest():
+    slow_print("!!WRONG ANSWER!!")
+    slow_print("Devil comes from behind cut's your throat.\n YOU DIED")
+    slow_print("Would you like to restart the game")
+    slow_print("1. Yes ")
+    slow_print("2. NO")
+    ch5=input()
+    if ch5.isdigit():
+        ch5=int(ch5)
+        if ch5==1:
+           main()
+        elif ch5==2:
+           exit()
+    else:
+         slow_print("You enter the invalid choice.\n Please enter the valid choice")
+         slow_print("Let's Retry")
+         main()
+
+def piano():
+    slow_print("""You solve the riddle, correctly answering "A piano." A hidden compartment in the room's wall opens, revealing a small key. 
+          You use it to unlock the door and escape the room. You're back in the hallway, and the choice is yours once again. 
+          To your left, you hear faint laughter echoing from the corridor, and to your right, a set of double doors beckons.""")
+    slow_print("""What will you do?
+      1. Follow the laughter down the corridor.
+      2. Proceed through the double doors.""")
+    ch6=input("Where you will go: ")
+    if ch6.isdigit():
+        ch6=int(ch6)
+        if ch6==1:
+           laughter()
+        elif ch6==2:
+           double_door()
+    else:
+        slow_print("You enter the invalid choice.\n Please enter the valid choice")
+        slow_print("Let's Retry")
+        piano()
+
+        
+
+def strange_door():
+    slow_print("""You decide to investigate the strange sound behind the door. 
+          You open it cautiously to find a dark, dusty room filled with ancient books and a flickering candle. 
+          As you step inside, the door slams shut behind you. 
+          Panicking, you notice a riddle on the wall: \n"What has keys but can't open locks?""")
+    slow_print("What's your answer:")
+    slow_print("1. A chest ")
+    slow_print("2 A piano")
+    ch4=input()
+    if ch4.isdigit():
+        ch4=int(ch4)
+        if ch4==1:
+           chest()
+        elif ch4==2:
+           piano()
+    else:
+        slow_print("You enter the invalid choice.\n Please enter the valid choice")
+        slow_print("Let's Retry")
+        strange_door()
+
+def cooridor():
+    slow_print("On exploring the cooridor you find piano key on floor, now there is no clue you can find here \nso you head toward the door from where the strange sound was coming")
+    strange_door()
+    
+
+def mirror():
+    slow_print("""As you approach the mirror, you decipher the message, which reads, "The key to your escape lies in the library." Intrigued, you decide to search for the library. You leave the room and find yourself at a T-junction in the hallway. 
+          To your left, there's a door with a strange, eerie sound coming from behind it, and 
+          to your right, there's a corridor that seems to lead further into the mansion""")
+    slow_print("1. Investigate the strange sound behind the door.")
+    slow_print("2. Explor the corridor furthur")
+    ch3=input("What will you do? ")
+    if ch3.isdigit():
+        ch3=int(ch3)
+        if ch3==1:
+           strange_door()
+        elif ch3==2:
+           cooridor()
+    else:
+         slow_print("You enter the invalid choice.\n Please enter the valid choice")
+         slow_print("Let's Retry")
+         mirror()
+        
+def search_for_clue():
+    slow_print("""You Searched every where in the room for the clue, You can't find find anything.
+now there is left only one thing the MIRROR...""")
+    mirror()
+
+def wooden_door():
+      slow_print("""You open the door. It creaks open to reveal a dimly lit room with antique furniture and a large, ornate mirror. 
+In the reflection, you see a hidden message written in faint letters. 
+What will you do?
+1. Examine the Mirror 
+2. Search room for the clue""")
+      ch2=(input("Enter your choice: "))
+      if ch2.isdigit():
+          ch2=int(ch2)
+          if ch2==1:
+              mirror()
+          elif ch2==2:
+              search_for_clue()
+      else:
+         slow_print("You enter the invalid choice.\n Please enter the valid choice")
+         slow_print("Let's Retry")
+         wooden_door()
+          
+
+      
+
+def staircase():
+    slow_print(""" After Descending the Staircase you came to dark hall,
+in this dark there is nothing but the chills of the horror.
+But the inspecting the hall you find nothing so now you have to go upstair and see whats behind that door.""")
+    wooden_door()
+#Game starts here
+def chap_1():
+     slow_print("""You wake up in a dimly lit hallway. 
+     To your left, you see an old wooden door with a rusty doorknob, 
+     and to your right, a narrow staircase descends into darkness. 
+     What will you do?
+     1. Descend the staircase
+     2. Open the Door""")
+     slow_print("Tip: Always choose the choices with the number assign to them")
+
+     ch1=(input("What will you choose: "))
+     if ch1.isdigit():
+         ch1=int(ch1)
+         if ch1==1:
+            staircase()
+         elif ch1==2:
+            wooden_door()
+     else:
+         slow_print("You enter the invalid choice.\n Please enter the valid choice")
+         slow_print("Let's Retry")
+         chap_1()
+#main funtion
+def main():
+    
+    slow_print(f"Hello, {name} let's get started with the game")
+    slow_print("""You find yourself trapped in a dark, mysterious mansion, with no memory of how you got there. 
+The only way out is to make a series of choices that will lead you to freedom. 
+Your heart races as you realize that the mansion is full of secrets, traps, and enigmatic puzzles. 
+You must navigate through the following choices to escape""")
+    chap_1()
+slow_print("Welcome To The Mysterious Mansion Escape""")
+name=input("\n\n\nEnter your name: ")
+main()
+outro()
+
+
+    
