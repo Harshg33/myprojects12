@@ -1,0 +1,80 @@
+import tkinter as tk
+from tkinter import *
+from forex_python.converter import *
+import tkinter.messagebox
+
+#function to convert currency
+def convert_currency():
+    c= CurrencyRates()
+
+    from_currency=var1.get()
+    to_currency=var2.get()
+    
+    if from_currency=="Currency" or to_currency=="Currency":
+        tkinter.messagebox.showwarning("Error","Currency not selected \nPlease select currency")
+    elif (amount_entry.get()) == "":
+        tkinter.messagebox.showwarning("Amount not filled","Please enter the amount you want to convert")
+    elif from_currency==to_currency:
+        tkinter.messagebox.showwarning("Error!!","Current and New Currencies cannot be same")
+    else:
+        if (converted_entry.get()) !="":
+            converted_entry.delete(0,tk.END)
+        new=c.convert(from_currency,to_currency,float(amount_entry.get()))
+        new_amount=float("{:.4f}".format(new))
+        converted_entry.insert(tk.END,str(new_amount))
+        
+
+        
+#function to clear all entries
+def clear_all():
+    amount_entry.delete(0,END)
+    converted_entry.delete(0,END)
+#main function
+#creating a window
+root= tk.Tk()
+root.title("Currency Converter")
+title=tk.Label(root,text="Currency Converter",font="arial 18 bold")
+root.geometry("700x400")
+title.pack(side="top",fill=X)
+
+var1=tk.StringVar(root)
+var2=tk.StringVar(root)
+
+var1.set("Currency")
+var2.set("Currency")
+
+amount=tk.Label(root,text="Amount:",font="arial 12 bold")
+amount.place(x=265,y=53)
+
+#Amount which is gonna convert will be entered here
+amount_entry=tk.Entry(root,bd=2)
+amount_entry.place(x=340,y=53)
+
+CurrencyCodes_list=["INR","USD","CAD", "CNY", "DKK", "EUR"]
+
+from_currency_text=tk.Label(root,text="From:",font="arial 12 bold")
+from_currency_text.place(x=265,y=90)
+#option menu from where you select the currency which is going to convert
+from_currency=tk.OptionMenu(root,var1,*CurrencyCodes_list)
+from_currency.place(x=330,y=85)
+
+to_currency_text=tk.Label(root,text="To: ",font="arial 12 bold")
+to_currency_text.place(x=265,y=130)
+#option menu from where you select the converted currency
+to_currency=tk.OptionMenu(root,var2,*CurrencyCodes_list)
+to_currency.place(x=330,y=125)
+#button which convert the currency
+convert_button=tk.Button(root,text="Convert",font="arial 12 bold",command=convert_currency,bd=2,width=10,bg="orange")
+convert_button.place(x=320,y=170)
+#this will display the converted currency
+
+converted_label=tk.Label(root,text="Converted Amount: ",font="arial 12 bold")
+converted_label.place(x=265,y=210)
+
+converted_entry=tk.Entry(root,bd=2)
+converted_entry.place(x=280,y=240)
+#this button is to clear all entries
+clear=tk.Button(root,text="Clear all",font="arial 12 bold",bd=2,width=10,bg="orange",command=clear_all)
+clear.place(x=320,y=300)
+
+root.mainloop()
