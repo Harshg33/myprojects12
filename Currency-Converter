@@ -14,6 +14,8 @@ def convert_currency():
         tkinter.messagebox.showwarning("Error","Currency not selected \nPlease select currency")
     elif (amount_entry.get()) == "":
         tkinter.messagebox.showwarning("Amount not filled","Please enter the amount you want to convert")
+    elif (amount_entry.get()).isdigit()!=True:
+        tkinter.messagebox.showwarning("Error","Please enter valid entry")
     elif from_currency==to_currency:
         tkinter.messagebox.showwarning("Error!!","Current and New Currencies cannot be same")
     else:
